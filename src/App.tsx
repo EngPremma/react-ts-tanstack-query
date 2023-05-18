@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
-import { env } from './config';
-import { catApi, userApi } from './api';
+import { env } from 'src/config';
+import { catApi, userApi } from 'src/api';
 
 axios.defaults.baseURL = env.api;
 
