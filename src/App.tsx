@@ -1,14 +1,58 @@
+import React from 'react';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+
 import { env } from './config';
-import { ReactQueryProvider } from './contexts';
+import { catApi, userApi } from './api';
+
+axios.defaults.baseURL = env.api;
 
 const App = () => {
+	const { data, isLoading, isError, error, fetchStatus, isFetching, refetch } = useQuery({
+		queryKey: ['cats'],
+		queryFn: catApi.allCats,
+		staleTime: 10000,
+	});
+
+	const userQuery = useQuery({
+		queryKey: ['users'],
+		queryFn: userApi.users,
+	});
+
+	if (isLoading || userQuery.isLoading) {
+		return (
+			<>
+				<h4>Loading...</h4>
+			</>
+		);
+	}
+
+	if (isError) {
+		return <>{error?.message}</>;
+	}
+
 	return (
 		<>
-			<ReactQueryProvider>
-				hello
-				{env.api}
-				{env.mode}
-			</ReactQueryProvider>
+			fetch status: {fetchStatus}
+			<br />
+			is fetching: {isFetching ? <>is refreshing</> : null}
+			<button onClick={() => refetch()}>refetch cats</button>
+			<h3>Cats</h3>
+			{data?.cats.map(cat => {
+				return (
+					<React.Fragment key={cat._id}>
+						<p>{cat.name}</p>
+					</React.Fragment>
+				);
+			})}
+			<h3>Users</h3>
+			{userQuery?.data?.map(user => {
+				return (
+					<React.Fragment key={user.id}>
+						<p>{user.name}</p>
+					</React.Fragment>
+				);
+			})}
 		</>
 	);
 };
