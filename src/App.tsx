@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
@@ -8,18 +8,28 @@ import { catApi, userApi } from 'src/api';
 axios.defaults.baseURL = env.api;
 
 const App = () => {
+	const [paginate, setPaginate] = useState({ page: 1, limit: 10 });
+
 	const { data, isLoading, isError, error, fetchStatus, isFetching, refetch } = useQuery({
-		queryKey: ['cats'],
-		queryFn: catApi.allCats,
+		queryKey: ['cats', paginate.page, paginate.limit],
+		queryFn: () => catApi.allCats(paginate.page, paginate.limit),
 		staleTime: 10000,
+		retry: false,
 	});
 
-	const userQuery = useQuery({
-		queryKey: ['users'],
-		queryFn: userApi.users,
-	});
+	const handleNextPage = () => {
+		setPaginate(prev => ({ ...prev, page: prev.page + 1 }));
+	};
 
-	if (isLoading || userQuery.isLoading) {
+	const handlePrevPage = () => {
+		setPaginate(prev => ({ ...prev, page: prev.page - 1 }));
+	};
+	// const userQuery = useQuery({
+	// 	queryKey: ['users'],
+	// 	queryFn: userApi.users,
+	// });
+
+	if (isLoading) {
 		return (
 			<>
 				<h4>Loading...</h4>
@@ -45,14 +55,14 @@ const App = () => {
 					</React.Fragment>
 				);
 			})}
-			<h3>Users</h3>
-			{userQuery?.data?.map(user => {
+			{/* <h3>Users</h3> */}
+			{/* {userQuery?.data?.map(user => {
 				return (
 					<React.Fragment key={user.id}>
 						<p>{user.name}</p>
 					</React.Fragment>
 				);
-			})}
+			})} */}
 		</>
 	);
 };

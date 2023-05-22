@@ -16,8 +16,8 @@ type AllCatsResponse = Response & {
 };
 
 export const catApi = {
-	allCats: async (): Promise<AllCatsResponse> => {
-		const response = await axios.get('/cats');
+	allCats: async (page: number, limit: number): Promise<AllCatsResponse> => {
+		const response = await axios.get('/cats', { params: { page, limit } });
 		return response.data;
 	},
 };
