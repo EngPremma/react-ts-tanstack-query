@@ -1,70 +1,15 @@
-import React, { useState } from 'react';
 import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import { useRoutes } from 'react-router-dom';
 
+import { routes } from './router/router';
 import { env } from 'src/config';
-import { catApi, userApi } from 'src/api';
 
 axios.defaults.baseURL = env.api;
 
 const App = () => {
-	const [paginate, setPaginate] = useState({ page: 1, limit: 10 });
+	const elements = useRoutes(routes);
 
-	const { data, isLoading, isError, error, fetchStatus, isFetching, refetch } = useQuery({
-		queryKey: ['cats', paginate.page, paginate.limit],
-		queryFn: () => catApi.allCats(paginate.page, paginate.limit),
-		staleTime: 10000,
-		retry: false,
-	});
-
-	const handleNextPage = () => {
-		setPaginate(prev => ({ ...prev, page: prev.page + 1 }));
-	};
-
-	const handlePrevPage = () => {
-		setPaginate(prev => ({ ...prev, page: prev.page - 1 }));
-	};
-	// const userQuery = useQuery({
-	// 	queryKey: ['users'],
-	// 	queryFn: userApi.users,
-	// });
-
-	if (isLoading) {
-		return (
-			<>
-				<h4>Loading...</h4>
-			</>
-		);
-	}
-
-	if (isError) {
-		return <>{error?.message}</>;
-	}
-
-	return (
-		<>
-			fetch status: {fetchStatus}
-			<br />
-			is fetching: {isFetching ? <>is refreshing</> : null}
-			<button onClick={() => refetch()}>refetch cats</button>
-			<h3>Cats</h3>
-			{data?.cats.map(cat => {
-				return (
-					<React.Fragment key={cat._id}>
-						<p>{cat.name}</p>
-					</React.Fragment>
-				);
-			})}
-			{/* <h3>Users</h3> */}
-			{/* {userQuery?.data?.map(user => {
-				return (
-					<React.Fragment key={user.id}>
-						<p>{user.name}</p>
-					</React.Fragment>
-				);
-			})} */}
-		</>
-	);
+	return elements;
 };
 
 // type Todo = { id: number; name: string; done: boolean }

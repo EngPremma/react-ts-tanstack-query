@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { createBrowserRouter, RouteObject, RouterProvider, Outlet } from 'react-router-dom';
+import { RouteObject, Outlet } from 'react-router-dom';
 
 import HomeLayout from 'src/layout/home.layout';
 
@@ -9,7 +9,7 @@ const Home = lazy(() => import('src/pages/home.page'));
 const Cats = lazy(() => import('src/pages/cats.page'));
 const ErrorPage = lazy(() => import('src/pages/error.page'));
 
-const routes: RouteObject[] = [
+export const routes: RouteObject[] = [
 	{
 		path: '/',
 		element: (
@@ -36,9 +36,3 @@ const routes: RouteObject[] = [
 		element: <Cats />,
 	},
 ];
-
-const router = createBrowserRouter(routes);
-
-export const ReactRouterProvider = () => {
-	return <RouterProvider router={router} />;
-};
