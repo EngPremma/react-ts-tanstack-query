@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { catApi, userApi } from 'src/api';
 
 const Cats = () => {
-	const [paginate, setPaginate] = useState({ page: 1, limit: 10 });
+	const [paginate, setPaginate] = useState({ page: 1, limit: 1 });
 
 	const { data, isLoading, isError, error, fetchStatus, isFetching, refetch } = useQuery({
 		queryKey: ['cats', paginate.page, paginate.limit],
@@ -38,6 +38,9 @@ const Cats = () => {
 			<br />
 			is fetching: {isFetching ? <>is refreshing</> : null}
 			<button onClick={() => refetch()}>refetch cats</button>
+			<br />
+			<br />
+			<br />
 			<h3>Cats</h3>
 			{data?.cats.map(cat => {
 				return (
@@ -46,6 +49,16 @@ const Cats = () => {
 					</React.Fragment>
 				);
 			})}
+			<br />
+			<br />
+			<br />
+			<button onClick={handlePrevPage} disabled={paginate.page === 1}>
+				prev
+			</button>
+			{paginate.page}
+			<button onClick={handleNextPage} disabled={paginate.page === data.numberOfPage}>
+				next
+			</button>
 		</div>
 	);
 };

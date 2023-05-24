@@ -13,6 +13,7 @@ type Response = { message?: string };
 
 type AllCatsResponse = Response & {
 	cats: Cat[];
+	numberOfPage: number;
 };
 
 export const catApi = {
