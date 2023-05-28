@@ -10,29 +10,29 @@ const Cats = lazy(() => import('src/pages/cats.page'));
 const ErrorPage = lazy(() => import('src/pages/error.page'));
 
 export const routes: RouteObject[] = [
-	{
-		path: '/',
-		element: (
-			<HomeLayout>
-				<Suspense fallback={<Loading />}>
-					<Outlet />
-				</Suspense>
-			</HomeLayout>
-		),
-		errorElement: <ErrorPage />,
-		children: [
-			{
-				index: true,
-				element: <Home />,
-			},
-			{
-				path: '/cats',
-				element: <Cats />,
-			},
-		],
-	},
-	{
-		path: 'catt',
-		element: <Cats />,
-	},
+  {
+    path: '/',
+    element: (
+      <HomeLayout>
+        <Suspense fallback={<Loading />}>
+          <Outlet />
+        </Suspense>
+      </HomeLayout>
+    ),
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: '/cats',
+        element: <Cats />,
+      },
+    ],
+  },
+  {
+    path: 'catt',
+    element: <Cats />,
+  },
 ];

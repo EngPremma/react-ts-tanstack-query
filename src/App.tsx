@@ -7,9 +7,9 @@ import { env } from 'src/config';
 axios.defaults.baseURL = env.api;
 
 const App = () => {
-	const elements = useRoutes(routes);
+  const elements = useRoutes(routes);
 
-	return elements;
+  return elements;
 };
 
 // type Todo = { id: number; name: string; done: boolean }
