@@ -8,11 +8,11 @@ import { ReactQueryProvider } from './contexts';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-	<React.StrictMode>
-		<ReactQueryProvider>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</ReactQueryProvider>
-	</React.StrictMode>
+  <React.StrictMode>
+    <ReactQueryProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ReactQueryProvider>
+  </React.StrictMode>,
 );

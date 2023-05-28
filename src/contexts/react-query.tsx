@@ -5,18 +5,18 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { env } from '../config';
 
 type ReactQueryProviderProps = {
-	children: ReactNode;
+  children: ReactNode;
 };
 
 const queryClient = new QueryClient();
 
 const ReactQueryProvider = ({ children }: ReactQueryProviderProps) => {
-	return (
-		<QueryClientProvider client={queryClient}>
-			{children}
-			{env.mode === 'development' ? <ReactQueryDevtools initialIsOpen={false} /> : null}
-		</QueryClientProvider>
-	);
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+      {env.mode === 'development' ? <ReactQueryDevtools initialIsOpen={false} /> : null}
+    </QueryClientProvider>
+  );
 };
 
 export default ReactQueryProvider;
