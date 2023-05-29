@@ -6,7 +6,8 @@ import HomeLayout from 'src/layout/home.layout';
 import Loading from 'src/components/loading';
 
 const Home = lazy(() => import('src/pages/home.page'));
-const Cats = lazy(() => import('src/pages/cats.page'));
+const CatsInfiniteQuery = lazy(() => import('src/pages/cats-infinite-query.page'));
+const CatsUseQuery = lazy(() => import('src/pages/cats-use-query.page'));
 const ErrorPage = lazy(() => import('src/pages/error.page'));
 
 export const routes: RouteObject[] = [
@@ -26,13 +27,13 @@ export const routes: RouteObject[] = [
         element: <Home />,
       },
       {
-        path: '/cats',
-        element: <Cats />,
+        path: 'cats-infinite-query',
+        element: <CatsInfiniteQuery />,
+      },
+      {
+        path: 'cats-use-query',
+        element: <CatsUseQuery />,
       },
     ],
-  },
-  {
-    path: 'catt',
-    element: <Cats />,
   },
 ];
