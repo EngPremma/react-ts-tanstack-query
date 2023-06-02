@@ -43,7 +43,7 @@ const CatsInfiniteQuery = () => {
   }
 
   return (
-    <div>
+    <>
       fetch status: {fetchStatus}
       <br />
       is fetching: {isFetching ? <>is refreshing</> : null}
@@ -72,7 +72,7 @@ const CatsInfiniteQuery = () => {
       <button id='sf' disabled={!hasNextPage} onClick={() => fetchNextPage()}>
         load more
       </button>
-    </div>
+    </>
   );
 };
 

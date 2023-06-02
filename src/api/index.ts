@@ -1,4 +1,4 @@
-import { catApi } from './cat';
+import { catApi, CreateCat } from './cat';
 import { userApi } from './user';
 
-export { catApi, userApi };
+export { catApi, type CreateCat, userApi };

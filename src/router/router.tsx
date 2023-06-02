@@ -8,6 +8,7 @@ import Loading from 'src/components/loading';
 const Home = lazy(() => import('src/pages/home.page'));
 const CatsInfiniteQuery = lazy(() => import('src/pages/cats-infinite-query.page'));
 const CatsUseQuery = lazy(() => import('src/pages/cats-use-query.page'));
+const CreateCat = lazy(() => import('src/pages/create-cat.page'));
 const ErrorPage = lazy(() => import('src/pages/error.page'));
 
 export const routes: RouteObject[] = [
@@ -33,6 +34,10 @@ export const routes: RouteObject[] = [
       {
         path: 'cats-use-query',
         element: <CatsUseQuery />,
+      },
+      {
+        path: 'new-cat',
+        element: <CreateCat />,
       },
     ],
   },

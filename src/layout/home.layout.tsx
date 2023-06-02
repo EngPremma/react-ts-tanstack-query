@@ -7,6 +7,7 @@ const navList = [
   { routePath: routePath.homePage, label: 'Home' },
   { routePath: routePath.catsInfiniteQueryPage, label: 'Cats infinite query' },
   { routePath: routePath.catsUseQueryPage, label: 'Cats use query' },
+  { routePath: routePath.createCatPage, label: 'Create cat' },
 ];
 
 const HomeLayout = ({ children }: { children: ReactNode }) => {
@@ -21,7 +22,7 @@ const HomeLayout = ({ children }: { children: ReactNode }) => {
         >
           {navList.map(nav => {
             return (
-              <li style={{ listStyle: 'none' }}>
+              <li key={nav.routePath} style={{ listStyle: 'none' }}>
                 <NavLink to={nav.routePath}>{nav.label} </NavLink>
               </li>
             );

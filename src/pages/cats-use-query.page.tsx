@@ -33,7 +33,7 @@ const CatsUseQuery = () => {
   }
 
   return (
-    <div>
+    <>
       fetch status: {fetchStatus}
       <br />
       is fetching: {isFetching ? <>is refreshing</> : null}
@@ -59,7 +59,7 @@ const CatsUseQuery = () => {
       <button onClick={handleNextPage} disabled={paginate.page === data.numberOfPage}>
         next
       </button>
-    </div>
+    </>
   );
 };
 
