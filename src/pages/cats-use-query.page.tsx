@@ -8,7 +8,7 @@ const CatsUseQuery = () => {
 
   const { data, isLoading, isError, error, fetchStatus, isFetching, refetch } = useQuery({
     queryKey: ['cats', paginate.page, paginate.limit, 'use-query'],
-    queryFn: () => catApi.allCats(paginate.page, paginate.limit),
+    queryFn: ({ signal }) => catApi.allCats(paginate.page, paginate.limit, signal),
     staleTime: 10000,
     retry: false,
   });
