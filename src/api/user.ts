@@ -18,7 +18,3 @@ export const userApi = {
     return response.data;
   },
 };
-
-const name = 'premma';
-
-console.log(name);
