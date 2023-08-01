@@ -5,10 +5,10 @@ type User = {
   name: string;
   username: string;
   email: string;
-  address: any;
+  address: string;
   phone: string;
   website: string;
-  company: any;
+  company: string;
 };
 
 export const userApi = {
@@ -18,3 +18,7 @@ export const userApi = {
     return response.data;
   },
 };
+
+const name = 'premma';
+
+console.log(name);
