@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx lint-staged
+# Enable colors in Powershell (has scrolling issue?)
+export FORCE_COLOR=1
+
+# npx lint-staged
 pnpm lint-staged
