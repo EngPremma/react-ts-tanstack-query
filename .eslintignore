@@ -1,0 +1,6 @@
+**/dist/
+**/build
+**/types/
+**/node_modules/
+**/out/
+**/public/
