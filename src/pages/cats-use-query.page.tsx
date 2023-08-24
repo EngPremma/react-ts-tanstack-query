@@ -29,6 +29,7 @@ const CatsUseQuery = () => {
   }
 
   if (isError) {
+    // @ts-expect-error error type
     return <>{error?.message}</>;
   }
 
