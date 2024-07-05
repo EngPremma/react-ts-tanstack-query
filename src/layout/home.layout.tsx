@@ -5,9 +5,10 @@ import { routePath } from 'src/router/route-path';
 
 const navList = [
   { routePath: routePath.homePage, label: 'Home' },
-  { routePath: routePath.catsInfiniteQueryPage, label: 'Cats infinite query' },
-  { routePath: routePath.catsUseQueryPage, label: 'Cats use query' },
-  { routePath: routePath.createCatPage, label: 'Create cat' },
+  // { routePath: routePath.catsInfiniteQueryPage, label: 'Cats infinite query' },
+  // { routePath: routePath.catsUseQueryPage, label: 'Cats use query' },
+  // { routePath: routePath.createCatPage, label: 'Create cat' },
+  { routePath: routePath.socketIoPage, label: 'Socket.IO' },
 ];
 
 const HomeLayout = ({ children }: { children: ReactNode }) => {

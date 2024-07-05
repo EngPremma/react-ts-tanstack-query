@@ -4,6 +4,7 @@ import { RouteObject, Outlet, Navigate } from 'react-router-dom';
 import HomeLayout from 'src/layout/home.layout';
 
 import Loading from 'src/components/loading';
+import SocketIoPage from 'src/pages/socket-io.page';
 
 const Home = lazy(() => import('src/pages/home.page'));
 const CatsInfiniteQuery = lazy(() => import('src/pages/cats-infinite-query.page'));
@@ -47,6 +48,13 @@ export const routes: RouteObject[] = [
         path: 'new-cat',
         element: <CreateCat />,
       },
+      {
+        path: 'socketIo',
+        element: <SocketIoPage />,
+      },
     ],
+  },
+  {
+    path: '/auth',
   },
 ];
