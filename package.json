@@ -36,7 +36,7 @@
     "lint-staged": "^13.3.0",
     "prettier": "^2.8.8",
     "typescript": "^5.5.3",
-    "vite": "^4.5.3"
+    "vite": "^5.3.3"
   },
   "lint-staged": {
     "src/**/*.{js,html,css,ts}": "prettier --write --config ./.prettierrc",
