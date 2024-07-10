@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { privateAxios } from 'src/libs/axios';
 
 type Cat = {
   _id: string;
@@ -28,11 +28,11 @@ export type CreateCat = {
 
 export const catApi = {
   allCats: async (page: number, limit: number, signal: AbortSignal | undefined): Promise<AllCatsResponse> => {
-    const response = await axios.get('/cats', { params: { page, limit }, signal });
+    const response = await privateAxios.get('/cats', { params: { page, limit }, signal });
     return response.data;
   },
   createCat: async (cat: CreateCat): Promise<CreateCatResponse> => {
-    const response = await axios.post('/cats', cat);
+    const response = await privateAxios.post('/cats', cat);
 
     return response.data;
   },

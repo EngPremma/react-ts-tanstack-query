@@ -1,25 +1,46 @@
 import { lazy, Suspense } from 'react';
-import { RouteObject, Outlet, Navigate } from 'react-router-dom';
+import { Outlet, Navigate, RouteObject } from 'react-router-dom';
 
-import HomeLayout from 'src/layout/home.layout';
+import AuthLayout from 'src/layout/auth-layout';
+import DashboardLayout from 'src/layout/dashboard-layout';
+import { AuthContextProvider } from 'src/contexts';
 
 import Loading from 'src/components/loading';
 
+const LoginPage = lazy(() => import('src/pages/auth/login-page'));
 const Home = lazy(() => import('src/pages/home.page'));
 const CatsInfiniteQuery = lazy(() => import('src/pages/cats-infinite-query.page'));
 const CatsUseQuery = lazy(() => import('src/pages/cats-use-query.page'));
 const CreateCat = lazy(() => import('src/pages/create-cat.page'));
 const ErrorPage = lazy(() => import('src/pages/error.page'));
 
-export const routes: RouteObject[] = [
+export const routerObject: RouteObject[] = [
   {
     path: '/',
     element: (
-      <HomeLayout>
+      <AuthLayout>
         <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>
-      </HomeLayout>
+      </AuthLayout>
+    ),
+    children: [
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: (
+      <AuthContextProvider>
+        <DashboardLayout>
+          <Suspense fallback={<Loading />}>
+            <Outlet />
+          </Suspense>
+        </DashboardLayout>
+      </AuthContextProvider>
     ),
     errorElement: <ErrorPage />,
     children: [
@@ -28,15 +49,7 @@ export const routes: RouteObject[] = [
         element: <Home />,
       },
       {
-        path: '*',
-        element: (
-          <>
-            <Navigate to='/' />
-          </>
-        ),
-      },
-      {
-        path: 'cats-infinite-query',
+        path: '/dashboard/cats-infinite-query',
         element: <CatsInfiniteQuery />,
       },
       {
@@ -48,5 +61,9 @@ export const routes: RouteObject[] = [
         element: <CreateCat />,
       },
     ],
+  },
+  {
+    path: '*',
+    element: <Navigate to='/dashboard' />,
   },
 ];

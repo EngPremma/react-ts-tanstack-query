@@ -1,7 +1,9 @@
 import { ReactNode } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { routePath } from 'src/router/route-path';
+import { useAuthContext } from 'src/contexts';
+import { clearAuthToken } from 'src/utils/auth-token';
 
 const navList = [
   { routePath: routePath.homePage, label: 'Home' },
@@ -10,7 +12,15 @@ const navList = [
   { routePath: routePath.createCatPage, label: 'Create cat' },
 ];
 
-const HomeLayout = ({ children }: { children: ReactNode }) => {
+const DashboardLayout = ({ children }: { children: ReactNode }) => {
+  const { user, getMe } = useAuthContext();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    clearAuthToken();
+    navigate('/login');
+  };
+
   return (
     <div>
       <nav style={{ padding: 10, background: 'grey' }}>
@@ -27,11 +37,20 @@ const HomeLayout = ({ children }: { children: ReactNode }) => {
               </li>
             );
           })}
+          <li>
+            <button onClick={handleLogout}>logout</button>
+          </li>
         </ul>
       </nav>
-      <main style={{ margin: '8px 100px 0 100px' }}>{children}</main>
+      <main style={{ margin: '8px 100px 0 100px' }}>
+        <button onClick={getMe}>get me</button>
+        <h1>
+          Welcome <span>{user?.name}</span>
+        </h1>
+        {children}
+      </main>
     </div>
   );
 };
 
-export default HomeLayout;
+export default DashboardLayout;
