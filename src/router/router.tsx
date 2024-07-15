@@ -10,6 +10,7 @@ const CatsInfiniteQuery = lazy(() => import('src/pages/cats-infinite-query.page'
 const CatsUseQuery = lazy(() => import('src/pages/cats-use-query.page'));
 const CreateCat = lazy(() => import('src/pages/create-cat.page'));
 const ErrorPage = lazy(() => import('src/pages/error.page'));
+const TestPage = lazy(() => import('src/pages/test-page'));
 
 export const routes: RouteObject[] = [
   {
@@ -46,6 +47,10 @@ export const routes: RouteObject[] = [
       {
         path: 'new-cat',
         element: <CreateCat />,
+      },
+      {
+        path: 'test',
+        element: <TestPage />,
       },
     ],
   },
