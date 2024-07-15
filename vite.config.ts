@@ -15,5 +15,10 @@ export default defineConfig(({ mode }) => {
       port: env.PORT,
     },
     plugins: [react()],
+    test: {
+      environment: 'jsdom',
+      global: true,
+      setupFiles: './src/__tests__/setup.ts',
+    },
   };
 });

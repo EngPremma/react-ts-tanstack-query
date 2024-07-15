@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-type User = {
+export type User = {
   id: number;
   name: string;
   username: string;
@@ -12,9 +12,8 @@ type User = {
 };
 
 export const userApi = {
-  users: async (): Promise<User[]> => {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-
+  users: async () => {
+    const response = await axios.get<User[]>('https://jsonplaceholder.typicode.com/users');
     return response.data;
   },
 };
