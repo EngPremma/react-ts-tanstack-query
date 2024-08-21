@@ -5,7 +5,7 @@ import {
   getCoreRowModel,
   flexRender,
   PaginationState,
-  PaginationOptions,
+  // SortingState,
 } from '@tanstack/react-table';
 import { useSearchParams } from 'react-router-dom';
 
@@ -14,18 +14,18 @@ import useGetQueryStringObject from 'src/hooks/get-query-string';
 type Props<T extends Record<string, string | number>> = {
   data: T[];
   columns: ColumnDef<T>[];
-  paginationOptions: Pick<PaginationOptions, 'onPaginationChange' | 'pageCount'>;
+  pageCount?: number;
   showRowsOptions?: number[];
 };
 
 const Table = <T extends Record<string, string | number>>({
   data,
   columns,
-  paginationOptions,
+  pageCount,
   showRowsOptions = [10, 20, 30],
 }: Props<T>) => {
   const [pagination, setPagination] = useState<PaginationState>({ pageIndex: 0, pageSize: 10 });
-
+  // const [sorting, setSorting] = useState<SortingState>([]);
   const [, setSearchParams] = useSearchParams();
 
   const query = useGetQueryStringObject<{ page?: string; limit?: string }>();
@@ -45,12 +45,15 @@ const Table = <T extends Record<string, string | number>>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true, //we're doing manual "server-side" pagination
+    // manualSorting: true,
     debugTable: true,
     state: {
       pagination,
+      // sorting,
     },
     onPaginationChange: setPagination,
-    ...paginationOptions,
+    // onSortingChange: setSorting,
+    pageCount,
   });
 
   return (
@@ -59,9 +62,20 @@ const Table = <T extends Record<string, string | number>>({
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
-                <th key={header.id}>{flexRender(header.column.columnDef.header, header.getContext())}</th>
-              ))}
+              {headerGroup.headers.map(header => {
+                return (
+                  <th
+                    key={header.id}
+                    // onClick={header.column.getToggleSortingHandler()}
+                  >
+                    {flexRender(header.column.columnDef.header, header.getContext())}
+                    {/* {{
+                      asc: ' 🔼',
+                      desc: ' 🔽',
+                    }[header.column.getIsSorted() as string] ?? null} */}
+                  </th>
+                );
+              })}
             </tr>
           ))}
         </thead>
@@ -91,7 +105,6 @@ const Table = <T extends Record<string, string | number>>({
         <button
           onClick={() => {
             table.nextPage();
-            console.log(table.getState().pagination.pageIndex);
             setSearchParams(params => {
               params.set('page', String((pagination.pageIndex += 1)));
               return params;

@@ -55,9 +55,7 @@ const TanStackTablePage = () => {
       <Table
         data={data?.docs || []}
         columns={columns}
-        paginationOptions={{
-          pageCount: data?.totalPages,
-        }}
+        pageCount={data?.totalPages}
         showRowsOptions={[2, 4, 10]}
       />
     </>
