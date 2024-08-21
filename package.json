@@ -13,20 +13,20 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.51.1",
-    "@tanstack/react-query-devtools": "^5.51.1",
-    "axios": "^1.7.2",
+    "@tanstack/react-query": "^5.52.0",
+    "@tanstack/react-query-devtools": "^5.52.0",
+    "axios": "^1.7.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.24.1"
+    "react-router-dom": "^6.26.1"
   },
   "devDependencies": {
-    "@tanstack/eslint-plugin-query": "^5.51.1",
-    "@testing-library/jest-dom": "^6.4.6",
+    "@tanstack/eslint-plugin-query": "^5.52.0",
+    "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
-    "@types/node": "^20.14.10",
-    "@types/react": "^18.3.3",
+    "@types/node": "^20.16.1",
+    "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
@@ -37,12 +37,12 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.3.5",
     "husky": "^8.0.3",
-    "jsdom": "^24.1.0",
+    "jsdom": "^24.1.1",
     "lint-staged": "^13.3.0",
     "prettier": "^2.8.8",
-    "typescript": "^5.5.3",
-    "vite": "^5.3.3",
-    "vitest": "^2.0.2"
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2",
+    "vitest": "^2.0.5"
   },
   "lint-staged": {
     "src/**/*.{js,html,css,ts}": "prettier --write --config ./.prettierrc",
