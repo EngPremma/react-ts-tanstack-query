@@ -50,6 +50,6 @@
   },
   "lint-staged": {
     "src/**/*.{js,html,css,ts}": "prettier --write --config ./.prettierrc",
-    "src/**/*.{ts,tsx}": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "src/**/*.{ts,tsx}": "eslint src/**/*.{ts,tsx} --report-unused-disable-directives --max-warnings 0"
   }
 }
