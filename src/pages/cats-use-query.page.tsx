@@ -29,7 +29,6 @@ const CatsUseQuery = () => {
   }
 
   if (isError) {
-    // @ts-expect-error error type
     return <>{error?.message}</>;
   }
 
@@ -57,7 +56,7 @@ const CatsUseQuery = () => {
         prev
       </button>
       {paginate.page}
-      <button onClick={handleNextPage} disabled={paginate.page === data.numberOfPage}>
+      <button onClick={handleNextPage} disabled={paginate.page === data?.numberOfPage}>
         next
       </button>
     </>

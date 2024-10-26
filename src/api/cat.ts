@@ -27,7 +27,7 @@ export type CreateCat = {
 };
 
 export const catApi = {
-  allCats: async (page: number, limit: number, signal: AbortSignal | undefined): Promise<AllCatsResponse> => {
+  allCats: async (page: number, limit: number, signal?: AbortSignal): Promise<AllCatsResponse> => {
     const response = await axios.get('/cats', { params: { page, limit }, signal });
     return response.data;
   },
