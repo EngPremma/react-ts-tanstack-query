@@ -9,6 +9,7 @@ const navList = [
   { routePath: routePath.catsUseQueryPage, label: 'Cats use query' },
   { routePath: routePath.createCatPage, label: 'Create cat' },
   { routePath: routePath.testPage, label: 'Test Page' },
+  { routePath: routePath.tanStackTablePage, label: 'Tan stack table' },
 ];
 
 const HomeLayout = ({ children }: { children: ReactNode }) => {

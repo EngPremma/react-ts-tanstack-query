@@ -11,6 +11,7 @@ const CatsUseQuery = lazy(() => import('src/pages/cats-use-query.page'));
 const CreateCat = lazy(() => import('src/pages/create-cat.page'));
 const ErrorPage = lazy(() => import('src/pages/error.page'));
 const TestPage = lazy(() => import('src/pages/test-page'));
+const TanStackTablePage = lazy(() => import('src/pages/tan-stack-table/tan-stack-table'));
 
 export const routes: RouteObject[] = [
   {
@@ -51,6 +52,10 @@ export const routes: RouteObject[] = [
       {
         path: 'test',
         element: <TestPage />,
+      },
+      {
+        path: 'tan-stack-table',
+        element: <TanStackTablePage />,
       },
     ],
   },
