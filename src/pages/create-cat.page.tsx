@@ -5,8 +5,7 @@ import { catApi, CreateCat } from 'src/api';
 
 const CreateCatPage = () => {
   const catNameInputRef = useRef<HTMLInputElement>(null);
-
-  const { mutate, isLoading, isError, isSuccess, error, reset } = useMutation({
+  const { mutate, isPending, isError, isSuccess, reset } = useMutation({
     mutationFn: (cat: CreateCat) => catApi.createCat(cat),
     // onMutate: variables => {},
     // onError: (error, variables, context) => {},
@@ -16,19 +15,19 @@ const CreateCatPage = () => {
 
   const handleCreateCat = () => {
     mutate({ name: catNameInputRef.current?.value || '', age: 1, breed: '23' });
-    catNameInputRef.current.value = null;
+    // catNameInputRef.current.value = '';
   };
 
   return (
     <>
       CreateCatPage
-      <input name='name' ref={catNameInputRef} />
-      <button disabled={isLoading} onClick={handleCreateCat}>
+      <input name='name' ref={catNameInputRef} defaultValue={''} />
+      <button disabled={isPending} onClick={handleCreateCat}>
         Create
       </button>
       <button onClick={reset}>Reset</button>
       {isSuccess && <p>Create cat successfully</p>}
-      {isError && <p>{error?.response?.data?.messageObj?.message}</p>}
+      {isError && <p>error</p>}
     </>
   );
 };

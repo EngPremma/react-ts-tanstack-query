@@ -1,22 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { userApi, User } from 'src/api';
+import { userApi } from 'src/api';
 
 const TestPage = () => {
-  const [users, setUsers] = useState<User[]>([]);
   const [inputText, setInputText] = useState('');
   const [displayText, setDisplayText] = useState('');
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const data = await userApi.users();
-        setUsers(data);
-      } catch (error) {
-        console.log('error :>> ', error);
-      }
-    })();
-  }, []);
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['test', 'user'],
+    queryFn: userApi.users,
+    staleTime: 10000,
+  });
 
   return (
     <>
@@ -37,8 +31,10 @@ const TestPage = () => {
         set text
       </button>
       <p>{displayText}</p>
+      {isError && <p>Error</p>}
+      {isLoading && <p>Loading...</p>}
       <div data-testid='container'>
-        {users.map(user => {
+        {data?.map(user => {
           return (
             <p key={user.id} data-testid='user-card'>
               {user.name}

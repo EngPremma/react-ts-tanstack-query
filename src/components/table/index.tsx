@@ -7,7 +7,7 @@ import {
   PaginationState,
   // SortingState,
 } from '@tanstack/react-table';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router';
 
 import useGetQueryStringObject from 'src/hooks/get-query-string';
 

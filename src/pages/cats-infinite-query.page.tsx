@@ -21,6 +21,7 @@ const CatsInfiniteQuery = () => {
     queryKey: ['cats', paginate.page, paginate.limit, 'infinite-query'],
     queryFn: ({ pageParam = 1 }) => catApi.allCats(pageParam, paginate.limit),
     staleTime: 5000,
+    initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => {
       if (pages.length < lastPage.numberOfPage) {
         return pages.length + 1;
@@ -52,7 +53,7 @@ const CatsInfiniteQuery = () => {
       <br />
       <br />
       <h3>CatsInfiniteQuery</h3>
-      {data.pages.map((group, index) => {
+      {data?.pages.map((group, index) => {
         return (
           <React.Fragment key={index}>
             {group.cats.map(cat => {
