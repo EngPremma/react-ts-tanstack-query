@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { useRoutes } from 'react-router-dom';
+import { useRoutes } from 'react-router';
 
-import { routes } from './router/router';
+import { routes } from 'src/router/router';
 import { env } from 'src/config';
 
 axios.defaults.baseURL = env.api;
