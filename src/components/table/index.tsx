@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   ColumnDef,
   useReactTable,
@@ -56,6 +56,46 @@ const Table = <T extends Record<string, string | number>>({
     pageCount,
   });
 
+  const handlePreviousPage = useCallback(() => {
+    table.previousPage();
+    setSearchParams(
+      params => {
+        params.set('page', String((pagination.pageIndex -= 1)));
+        return params;
+      },
+      { replace: true },
+    );
+  }, [pagination, setSearchParams, table]);
+
+  const handleNextPage = useCallback(() => {
+    table.nextPage();
+    setSearchParams(
+      params => {
+        params.set('page', String((pagination.pageIndex += 1)));
+        return params;
+      },
+      {
+        replace: true,
+      },
+    );
+  }, [pagination, setSearchParams, table]);
+
+  const handlePageSizeChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      table.setPageSize(Number(e.target.value));
+      table.resetPageIndex();
+      setSearchParams(
+        params => {
+          params.set('limit', e.target.value);
+          params.set('page', '0');
+          return params;
+        },
+        { replace: true },
+      );
+    },
+    [table, setSearchParams],
+  );
+
   return (
     <>
       <table>
@@ -90,42 +130,13 @@ const Table = <T extends Record<string, string | number>>({
         </tbody>
       </table>
       <div>
-        <button
-          onClick={() => {
-            table.previousPage();
-            setSearchParams(params => {
-              params.set('page', String((pagination.pageIndex -= 1)));
-              return params;
-            });
-          }}
-          disabled={!table.getCanPreviousPage()}
-        >
+        <button onClick={handlePreviousPage} disabled={!table.getCanPreviousPage()}>
           prev
         </button>
-        <button
-          onClick={() => {
-            table.nextPage();
-            setSearchParams(params => {
-              params.set('page', String((pagination.pageIndex += 1)));
-              return params;
-            });
-          }}
-          disabled={!table.getCanNextPage()}
-        >
+        <button onClick={handleNextPage} disabled={!table.getCanNextPage()}>
           next
         </button>
-        <select
-          value={table.getState().pagination.pageSize}
-          onChange={e => {
-            table.setPageSize(Number(e.target.value));
-            table.resetPageIndex();
-            setSearchParams(params => {
-              params.set('limit', e.target.value);
-              params.set('page', '0');
-              return params;
-            });
-          }}
-        >
+        <select value={table.getState().pagination.pageSize} onChange={handlePageSizeChange}>
           {showRowsOptions.map(pageSize => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
