@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Outlet, Navigate, RouteObject } from 'react-router-dom';
+import { RouteObject, Outlet, Navigate } from 'react-router';
 
 import AuthLayout from 'src/layout/auth-layout';
 import DashboardLayout from 'src/layout/dashboard-layout';
@@ -13,6 +13,8 @@ const CatsInfiniteQuery = lazy(() => import('src/pages/cats-infinite-query.page'
 const CatsUseQuery = lazy(() => import('src/pages/cats-use-query.page'));
 const CreateCat = lazy(() => import('src/pages/create-cat.page'));
 const ErrorPage = lazy(() => import('src/pages/error.page'));
+const TestPage = lazy(() => import('src/pages/test-page'));
+const TanStackTablePage = lazy(() => import('src/pages/tan-stack-table/tan-stack-table'));
 
 export const routerObject: RouteObject[] = [
   {
@@ -59,6 +61,14 @@ export const routerObject: RouteObject[] = [
       {
         path: 'new-cat',
         element: <CreateCat />,
+      },
+      {
+        path: 'test',
+        element: <TestPage />,
+      },
+      {
+        path: '/dashboard/tan-stack-table',
+        element: <TanStackTablePage />,
       },
     ],
   },

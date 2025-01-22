@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router';
 
 import { routePath } from 'src/router/route-path';
 import { useAuthContext } from 'src/contexts';
@@ -10,6 +10,8 @@ const navList = [
   { routePath: routePath.catsInfiniteQueryPage, label: 'Cats infinite query' },
   { routePath: routePath.catsUseQueryPage, label: 'Cats use query' },
   { routePath: routePath.createCatPage, label: 'Create cat' },
+  { routePath: routePath.testPage, label: 'Test Page' },
+  { routePath: routePath.tanStackTablePage, label: 'Tan stack table' },
 ];
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {

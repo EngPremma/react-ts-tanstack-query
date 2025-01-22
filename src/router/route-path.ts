@@ -3,4 +3,6 @@ export const routePath = {
   catsInfiniteQueryPage: '/dashboard/cats-infinite-query',
   catsUseQueryPage: '/cats-use-query',
   createCatPage: '/dashboard/new-cat',
+  testPage: '/test',
+  tanStackTablePage: '/dashboard/tan-stack-table',
 };

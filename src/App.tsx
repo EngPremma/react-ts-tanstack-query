@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useRoutes } from 'react-router-dom';
+import { useRoutes } from 'react-router';
 
 import { ReactQueryProvider } from 'src/contexts';
 import AxiosInterceptor from 'src/libs/axios/axios-interceptor.tsx';
