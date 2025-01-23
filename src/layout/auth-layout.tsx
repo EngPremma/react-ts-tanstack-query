@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useEffect } from 'react';
+import { useNavigate, Outlet } from 'react-router';
 
 import { getUserCookie } from 'src/libs/cookie-util';
 
-const AuthLayout = ({ children }: { children: React.ReactNode }) => {
+const AuthLayout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <h1>Auth layout</h1>
-      {children}
+      <Outlet />
     </>
   );
 };

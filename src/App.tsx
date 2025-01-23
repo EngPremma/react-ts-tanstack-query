@@ -1,18 +1,18 @@
 import axios from 'axios';
-import { useRoutes } from 'react-router';
 
 import { ReactQueryProvider } from 'src/contexts';
 import AxiosInterceptor from 'src/libs/axios/axios-interceptor.tsx';
-import { routerObject } from 'src/router/router';
+import { AppRoute } from 'src/router/router';
 import { env } from 'src/config';
 
 axios.defaults.baseURL = env.api;
 
 const App = () => {
-  const routes = useRoutes(routerObject);
   return (
     <ReactQueryProvider>
-      <AxiosInterceptor>{routes}</AxiosInterceptor>
+      <AxiosInterceptor>
+        <AppRoute />
+      </AxiosInterceptor>
     </ReactQueryProvider>
   );
 };

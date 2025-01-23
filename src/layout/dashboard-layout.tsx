@@ -1,5 +1,4 @@
-import { ReactNode } from 'react';
-import { NavLink, useNavigate } from 'react-router';
+import { NavLink, useNavigate, Outlet } from 'react-router';
 
 import { routePath } from 'src/router/route-path';
 import { useAuthContext } from 'src/contexts';
@@ -14,7 +13,7 @@ const navList = [
   { routePath: routePath.tanStackTablePage, label: 'Tan stack table' },
 ];
 
-const DashboardLayout = ({ children }: { children: ReactNode }) => {
+const DashboardLayout = () => {
   const { user, getMe } = useAuthContext();
   const navigate = useNavigate();
 
@@ -53,7 +52,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
         <h1>
           Welcome <span>{user?.name}</span>
         </h1>
-        {children}
+        <Outlet />
       </main>
     </div>
   );
