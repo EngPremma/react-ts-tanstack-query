@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 import { privateAxios } from './';
-import { clearAuthToken, getAuthToken } from 'src/utils/auth-token';
+import { clearUserCookie } from 'src/libs/cookie-util';
 
 const AxiosInterceptor = ({ children }: { children: React.ReactNode }) => {
   const [isSet, setIsSet] = useState(false);
@@ -11,7 +11,6 @@ const AxiosInterceptor = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const reqInterceptorOnFulfilled = (config: InternalAxiosRequestConfig) => {
-      config.headers.Authorization = `Bearer ${getAuthToken()}`;
       return config;
     };
 
@@ -27,7 +26,7 @@ const AxiosInterceptor = ({ children }: { children: React.ReactNode }) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const resInterceptorOnRejected = (error: any) => {
       if (error.response.status === 401) {
-        clearAuthToken();
+        clearUserCookie();
         navigate('/login');
       }
 

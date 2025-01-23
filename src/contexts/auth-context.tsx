@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 
 import { authApi } from 'src/api/auth';
-import { getAuthToken } from 'src/utils/auth-token';
+import { getUserCookie } from 'src/libs/cookie-util';
 
 export type User = {
   email: string;
@@ -19,10 +19,15 @@ const AuthContext = createContext<AuthContextType>({ user: null, getMe: () => Pr
 const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
+  const { pathname, search } = useLocation();
+  const callbackUrl = encodeURIComponent(`${pathname}${search}`);
 
   useEffect(() => {
-    if (getAuthToken()) getMe();
-    else navigate('/login');
+    if (getUserCookie() === 'true') {
+      getMe();
+    } else {
+      navigate(`/login?callback=${callbackUrl}`, { replace: true });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

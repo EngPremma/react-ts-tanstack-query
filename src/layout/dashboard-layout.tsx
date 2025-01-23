@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router';
 
 import { routePath } from 'src/router/route-path';
 import { useAuthContext } from 'src/contexts';
-import { clearAuthToken } from 'src/utils/auth-token';
+import { authApi } from 'src/api/auth';
 
 const navList = [
   { routePath: routePath.homePage, label: 'Home' },
@@ -18,9 +18,13 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
   const { user, getMe } = useAuthContext();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    clearAuthToken();
-    navigate('/login');
+  const handleLogout = async () => {
+    try {
+      await authApi.logout();
+      navigate('/login');
+    } catch (error) {
+      console.log('error :>> ', error);
+    }
   };
 
   return (

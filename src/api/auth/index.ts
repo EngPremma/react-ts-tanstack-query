@@ -1,4 +1,4 @@
-import { publicAxios, privateAxios } from 'src/libs/axios';
+import { privateAxios } from 'src/libs/axios';
 
 import { User } from 'src/contexts/auth-context';
 
@@ -13,7 +13,11 @@ type Response = {
 
 export const authApi = {
   login: async (data: LoginReqData) => {
-    const response = await publicAxios.post<Response & { token: string }>('/users/login', data);
+    const response = await privateAxios.post<Response & { token: string }>('/users/login', data);
+    return response.data;
+  },
+  logout: async () => {
+    const response = await privateAxios.get<Response>('/users/logout');
     return response.data;
   },
   getMe: async () => {

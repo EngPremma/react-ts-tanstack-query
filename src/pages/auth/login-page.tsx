@@ -1,16 +1,22 @@
-import { useNavigate, Link } from 'react-router';
+import { useNavigate, Link, useLocation } from 'react-router';
+import qs from 'qs';
 
 import { authApi } from 'src/api/auth';
-import { setAuthToken } from 'src/utils/auth-token';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { search } = useLocation();
+  const queryString = qs.parse(search.replace('?', ''));
 
   const handleLogin = async () => {
     try {
-      const response = await authApi.login({ email: 'premma@test.com', password: '12345678' });
-      setAuthToken(response.token);
-      navigate('/dashboard', { replace: true });
+      await authApi.login({ email: 'premma@test.com', password: '12345678' });
+
+      if (queryString.callback) {
+        navigate(`${decodeURIComponent(queryString.callback as string)}`, { replace: true });
+      } else {
+        navigate('/dashboard', { replace: true });
+      }
     } catch (error) {
       console.log('error :>> ', error);
     }

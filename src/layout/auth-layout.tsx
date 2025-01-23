@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
-import { getAuthToken } from 'src/utils/auth-token';
+import { getUserCookie } from 'src/libs/cookie-util';
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
-  const token = getAuthToken();
 
   useEffect(() => {
-    if (token) navigate('/dashboard');
-    else navigate('/login');
-  }, [navigate, token]);
+    if (getUserCookie() === 'true') {
+      navigate('/dashboard');
+    }
+  }, [navigate]);
 
   return (
     <>

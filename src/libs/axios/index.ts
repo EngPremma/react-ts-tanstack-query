@@ -7,8 +7,3 @@ export const privateAxios = axios.create({
   withCredentials: true,
   timeout: 5000,
 });
-
-export const publicAxios = axios.create({
-  baseURL: `${env.api}/api/v1`,
-  timeout: 5000,
-});
