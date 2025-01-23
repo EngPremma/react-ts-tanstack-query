@@ -1,6 +1,6 @@
 import { privateAxios } from 'src/libs/axios';
 
-import { User } from 'src/contexts/auth-context';
+import { User } from 'src/context-providers/auth-provider';
 
 type LoginReqData = {
   email: string;

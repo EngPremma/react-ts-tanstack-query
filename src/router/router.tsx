@@ -3,7 +3,7 @@ import { Navigate, Routes, Route } from 'react-router';
 
 import AuthLayout from 'src/layout/auth-layout';
 import DashboardLayout from 'src/layout/dashboard-layout';
-import { AuthContextProvider } from 'src/contexts';
+import { AuthProvider } from 'src/context-providers';
 
 import Loader from 'src/components/loading';
 
@@ -39,9 +39,9 @@ export const AppRoute = () => {
         <Route
           path='dashboard'
           element={
-            <AuthContextProvider>
+            <AuthProvider>
               <DashboardLayout />
-            </AuthContextProvider>
+            </AuthProvider>
           }
         >
           {privateRoutes.map((route, index) => (

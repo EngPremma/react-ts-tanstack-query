@@ -16,7 +16,7 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType>({ user: null, getMe: () => Promise.resolve() });
 
-const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const { navigateToLoginWithUrlCallback } = useUrlCallback();
 
@@ -43,7 +43,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   return <AuthContext.Provider value={{ user: user, getMe }}>{children}</AuthContext.Provider>;
 };
 
-export default AuthContextProvider;
+export default AuthProvider;
 
 export const useAuthContext = () => {
   return useContext(AuthContext);

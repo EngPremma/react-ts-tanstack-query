@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 
-import { useAuthContext } from 'src/contexts';
+import { useAuthContext } from 'src/context-providers';
 import Navbar from 'src/components/navbar';
 
 const DashboardLayout = () => {
