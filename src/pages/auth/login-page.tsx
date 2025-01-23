@@ -1,19 +1,18 @@
-import { useNavigate, Link, useLocation } from 'react-router';
-import qs from 'qs';
+import { useNavigate, Link } from 'react-router';
 
 import { authApi } from 'src/api/auth';
+import useUrlCallback from 'src/hooks/use-url-callback';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { search } = useLocation();
-  const queryString = qs.parse(search.replace('?', ''));
+  const { navigateToCallbackUrl, callbackUrl } = useUrlCallback();
 
   const handleLogin = async () => {
     try {
       await authApi.login({ email: 'premma@test.com', password: '12345678' });
 
-      if (queryString.callback) {
-        navigate(`${decodeURIComponent(queryString.callback as string)}`, { replace: true });
+      if (callbackUrl) {
+        navigateToCallbackUrl();
       } else {
         navigate('/dashboard', { replace: true });
       }

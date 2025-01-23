@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useState, useContext } from 'react';
-import { useNavigate, useLocation } from 'react-router';
 
 import { authApi } from 'src/api/auth';
 import { getUserCookie } from 'src/libs/cookie-util';
+import useUrlCallback from 'src/hooks/use-url-callback';
 
 export type User = {
   email: string;
@@ -18,15 +18,13 @@ const AuthContext = createContext<AuthContextType>({ user: null, getMe: () => Pr
 
 const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const navigate = useNavigate();
-  const { pathname, search } = useLocation();
-  const callbackUrl = encodeURIComponent(`${pathname}${search}`);
+  const { navigateToLoginWithUrlCallback } = useUrlCallback();
 
   useEffect(() => {
     if (getUserCookie() === 'true') {
       getMe();
     } else {
-      navigate(`/login?callback=${callbackUrl}`, { replace: true });
+      navigateToLoginWithUrlCallback();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
