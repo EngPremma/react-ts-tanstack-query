@@ -5,13 +5,13 @@ import useUrlCallback from 'src/hooks/use-url-callback';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { navigateToCallbackUrl, callbackUrl } = useUrlCallback();
+  const { navigateToCallbackUrl, queryString } = useUrlCallback();
 
   const handleLogin = async () => {
     try {
       await authApi.login({ email: 'premma@test.com', password: '12345678' });
 
-      if (callbackUrl) {
+      if (queryString.callback) {
         navigateToCallbackUrl();
       } else {
         navigate('/dashboard', { replace: true });

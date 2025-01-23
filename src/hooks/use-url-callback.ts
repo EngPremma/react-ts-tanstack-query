@@ -8,6 +8,8 @@ const useUrlCallback = () => {
 
   const queryString = useMemo(() => qs.parse(search.replace('?', '')) as { callback: string }, [search]);
 
+  const urlCallback = useMemo(() => encodeURIComponent(`${pathname}${search}`), [pathname, search]);
+
   const navigateToLoginWithUrlCallback = () => {
     const urlCallback = encodeURIComponent(`${pathname}${search}`);
 
@@ -19,7 +21,8 @@ const useUrlCallback = () => {
   };
 
   return {
-    callbackUrl: queryString.callback,
+    queryString,
+    urlCallback,
     navigateToLoginWithUrlCallback,
     navigateToCallbackUrl,
   };

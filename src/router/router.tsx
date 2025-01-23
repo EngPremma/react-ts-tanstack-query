@@ -3,9 +3,10 @@ import { Navigate, Routes, Route } from 'react-router';
 
 import AuthLayout from 'src/layout/auth-layout';
 import DashboardLayout from 'src/layout/dashboard-layout';
-import { AuthProvider } from 'src/context-providers';
+// import { AuthProvider } from 'src/context-providers';
 
 import Loader from 'src/components/loading';
+import AuthWrapper from 'src/components/auth-wrapper';
 
 const LoginPage = lazy(() => import('src/pages/auth/login-page'));
 const Home = lazy(() => import('src/pages/home.page'));
@@ -39,9 +40,9 @@ export const AppRoute = () => {
         <Route
           path='dashboard'
           element={
-            <AuthProvider>
+            <AuthWrapper>
               <DashboardLayout />
-            </AuthProvider>
+            </AuthWrapper>
           }
         >
           {privateRoutes.map((route, index) => (
