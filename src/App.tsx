@@ -1,15 +1,12 @@
 import axios from 'axios';
-import { useRoutes } from 'react-router';
 
-import { routes } from 'src/router/router';
+import AppRoute from 'src/router/router';
 import { env } from 'src/config';
 
 axios.defaults.baseURL = env.api;
 
 const App = () => {
-  const elements = useRoutes(routes);
-
-  return elements;
+  return <AppRoute />;
 };
 
 // type Todo = { id: number; name: string; done: boolean }
