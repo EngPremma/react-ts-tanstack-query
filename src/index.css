@@ -1,4 +1,27 @@
-* {
-  margin: 0;
-  padding: 0;
+@import 'tailwindcss';
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+h1 {
+  font-family: Montserrat;
+  @apply text-2xl font-semibold;
+}
+
+@font-face {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../public/fonts/montserrat/Montserrat-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: MontserratItalic;
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../public/fonts/montserrat/Montserrat-Italic-VariableFont_wght.ttf');
 }

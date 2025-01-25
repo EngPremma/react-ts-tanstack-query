@@ -13,17 +13,19 @@ const navList = [
 
 const NavBar = () => {
   return (
-    <nav style={{ padding: 10, background: 'grey' }}>
-      <ul
-        style={{
-          display: 'flex',
-          justifyContent: 'space-evenly',
-        }}
-      >
+    <nav className='p-5 bg-gray-300'>
+      <ul className='flex justify-evenly'>
         {navList.map(nav => {
           return (
-            <li key={nav.routePath} style={{ listStyle: 'none' }}>
-              <NavLink to={nav.routePath}>{nav.label} </NavLink>
+            <li key={nav.routePath}>
+              <NavLink
+                className={({ isActive }) =>
+                  `${isActive ? 'text-blue-700 ' : ''} font-[Montserrat] font-semibold`
+                }
+                to={nav.routePath}
+              >
+                {nav.label}
+              </NavLink>
             </li>
           );
         })}

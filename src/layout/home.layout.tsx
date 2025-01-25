@@ -6,7 +6,7 @@ const HomeLayout = () => {
   return (
     <>
       <NavBar />
-      <main style={{ margin: '8px 100px 0 100px' }}>
+      <main className='container font-[Montserrat]'>
         <Outlet />
       </main>
     </>
