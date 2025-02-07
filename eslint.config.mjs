@@ -1,10 +1,5 @@
-import {
-  fixupConfigRules,
-  // fixupPluginRules
-} from '@eslint/compat';
+import { fixupConfigRules } from '@eslint/compat';
 import reactRefresh from 'eslint-plugin-react-refresh';
-// import { configs as ReactQueryConfigs, rules as ReactQueryRules } from "@tanstack/eslint-plugin-query";
-// import tanstackQuery from '@tanstack/eslint-plugin-query';
 import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
 import path from 'node:path';
@@ -29,15 +24,13 @@ export default [
       'eslint:recommended',
       'plugin:@typescript-eslint/recommended',
       'plugin:react-hooks/recommended',
-      'plugin:@tanstack/eslint-plugin-query/recommended',
+      'plugin:@tanstack/query/recommended',
       'plugin:prettier/recommended',
     ),
   ),
   {
     plugins: {
       'react-refresh': reactRefresh,
-      // '@tanstack/query': fixupPluginRules(tanstackQuery),
-      // "@tanstack/eslint-plugin-query": { rules: ReactQueryRules, configs: ReactQueryConfigs },
     },
 
     languageOptions: {
@@ -61,14 +54,11 @@ export default [
         'error',
         {
           endOfLine: 'auto',
-          printWidth: 110,
+          printWidth: 100,
           semi: true,
           arrowParens: 'avoid',
         },
       ],
-      // '@tanstack/eslint-plugin-query/exhaustive-deps': 'error',
-      // '@tanstack/eslint-plugin-query/no-rest-destructuring': 'warn',
-      // '@tanstack/eslint-plugin-query/stable-query-client': 'error',
     },
   },
 ];

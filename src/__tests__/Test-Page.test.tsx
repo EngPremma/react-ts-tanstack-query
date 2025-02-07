@@ -13,7 +13,9 @@ describe('Test Page', () => {
 
   test('Should display users list', async () => {
     // create mock api before rendering component
-    const usersMock = [{ id: 1, name: 'Leanne Graham', username: 'Bret', email: 'Sincere@april.biz' }];
+    const usersMock = [
+      { id: 1, name: 'Leanne Graham', username: 'Bret', email: 'Sincere@april.biz' },
+    ];
     vi.spyOn(axios, 'get').mockResolvedValue({ data: usersMock });
 
     render(<TestPage />);

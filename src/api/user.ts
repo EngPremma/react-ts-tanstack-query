@@ -29,7 +29,9 @@ export type UsersQueryParams = {
 
 export const userApi = {
   users: async (queryParams: UsersQueryParams) => {
-    const response = await axios.get<Paginate<User>>(`${env.api}/api/v1/users`, { params: queryParams });
+    const response = await axios.get<Paginate<User>>(`${env.api}/api/v1/users`, {
+      params: queryParams,
+    });
     return response.data;
   },
 };
