@@ -1,4 +1,0 @@
-# Enable colors in Powershell (has scrolling issue?)
-# export FORCE_COLOR=1
-
-pnpm lint-staged

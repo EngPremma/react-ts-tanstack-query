@@ -19,7 +19,7 @@ const NavBar = () => {
           return (
             <li key={nav.routePath}>
               <NavLink
-                className={({ isActive }) =>
+                className={({ isActive }: { isActive: boolean }) =>
                   `${isActive ? 'text-blue-700 ' : ''} font-[Montserrat] font-semibold`
                 }
                 to={nav.routePath}
